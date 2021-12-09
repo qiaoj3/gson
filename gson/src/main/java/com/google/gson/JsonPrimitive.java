@@ -203,7 +203,19 @@ public final class JsonPrimitive extends JsonElement {
    */
   @Override
   public long getAsLong() {
-    return isNumber() ? getAsNumber().longValue() : Long.parseLong(getAsString());
+    if (!isNumber()) {
+      return  Long.parseLong(getAsString());
+    }
+
+    BigInteger num = getAsBigInteger();
+
+    if (num.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0) {
+      throw new NumberFormatException(" TOO LARGE: Long");
+    }
+    if (num.compareTo(BigInteger.valueOf(Long.MIN_VALUE)) < 0) {
+      throw new NumberFormatException(" TOO SMALL: Long");
+    }
+    return getAsNumber().longValue();
   }
 
   /**
@@ -214,25 +226,60 @@ public final class JsonPrimitive extends JsonElement {
    */
   @Override
   public short getAsShort() {
-    return isNumber() ? getAsNumber().shortValue() : Short.parseShort(getAsString());
+    if (!isNumber()) {
+      return  Short.parseShort(getAsString());
+    }
+
+    BigInteger num = getAsBigInteger();
+
+    if (num.compareTo(BigInteger.valueOf(Short.MAX_VALUE)) > 0) {
+      throw new NumberFormatException(" TOO LARGE: Short");
+    }
+    if (num.compareTo(BigInteger.valueOf(Short.MIN_VALUE)) < 0) {
+      throw new NumberFormatException(" TOO SMALL: Short");
+    }
+    return getAsNumber().shortValue();
   }
 
-  /**
-   * convenience method to get this element as a primitive integer.
-   *
-   * @return get this element as a primitive integer.
-   * @throws NumberFormatException if the value contained is not a valid integer.
-   */
+ /**
+  * convenience method to get this element as a primitive integer.
+  *
+  * @return get this element as a primitive integer.
+  * @throws NumberFormatException if the value contained is not a valid integer.
+  */
   @Override
   public int getAsInt() {
-    return isNumber() ? getAsNumber().intValue() : Integer.parseInt(getAsString());
+    if (!isNumber()) {
+      return  Integer.parseInt(getAsString());
+    }
+
+    BigInteger num = getAsBigInteger();
+
+    if (num.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
+        throw new NumberFormatException(" TOO LARGE: INT");
+    }
+    if (num.compareTo(BigInteger.valueOf(Integer.MIN_VALUE)) < 0) {
+      throw new NumberFormatException(" TOO SMALL: INT");
+    }
+    return getAsNumber().intValue();
   }
 
   @Override
   public byte getAsByte() {
-    return isNumber() ? getAsNumber().byteValue() : Byte.parseByte(getAsString());
-  }
+    if (!isNumber()) {
+      return  Byte.parseByte(getAsString());
+    }
 
+    BigInteger num = getAsBigInteger();
+
+    if (num.compareTo(BigInteger.valueOf(Byte.MAX_VALUE)) > 0) {
+      throw new NumberFormatException(" TOO LARGE: Byte");
+    }
+    if (num.compareTo(BigInteger.valueOf(Byte.MIN_VALUE)) < 0) {
+      throw new NumberFormatException(" TOO SMALL: Byte");
+    }
+    return getAsNumber().byteValue();
+  }
 
   @Override
   public char getAsCharacter() {
