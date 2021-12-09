@@ -217,12 +217,12 @@ public final class JsonPrimitive extends JsonElement {
     return isNumber() ? getAsNumber().shortValue() : Short.parseShort(getAsString());
   }
 
- /**
-  * convenience method to get this element as a primitive integer.
-  *
-  * @return get this element as a primitive integer.
-  * @throws NumberFormatException if the value contained is not a valid integer.
-  */
+  /**
+   * convenience method to get this element as a primitive integer.
+   *
+   * @return get this element as a primitive integer.
+   * @throws NumberFormatException if the value contained is not a valid integer.
+   */
   @Override
   public int getAsInt() {
     return isNumber() ? getAsNumber().intValue() : Integer.parseInt(getAsString());
@@ -232,6 +232,7 @@ public final class JsonPrimitive extends JsonElement {
   public byte getAsByte() {
     return isNumber() ? getAsNumber().byteValue() : Byte.parseByte(getAsString());
   }
+
 
   @Override
   public char getAsCharacter() {
@@ -293,3 +294,4 @@ public final class JsonPrimitive extends JsonElement {
     return false;
   }
 }
+
