@@ -12,8 +12,8 @@ public class Issue1994 extends TestCase {
      * same as the failure proposal by issue1994
      */
 
-    public void testconvertion_long_to_int_issue() {
-        JsonObject jsonObject = new JsonObject();
+    public void testConvertionLongToIntIssue() {
+        final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("foo", 10000000000L);
 
         try{
@@ -23,8 +23,8 @@ public class Issue1994 extends TestCase {
         }
     }
 
-    public void testconvertion_int_max() {
-        JsonObject jsonObject = new JsonObject();
+    public void testConvertionIntMax() {
+        final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("max_int", Integer.MAX_VALUE + 100L);
 
         try {
@@ -35,8 +35,8 @@ public class Issue1994 extends TestCase {
 
     }
 
-    public void testconvertion_int_min() {
-        JsonObject jsonObject = new JsonObject();
+    public void testConvertionIntMin() {
+        final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("min_int", Integer.MIN_VALUE - 100L);
 
         try {
@@ -46,8 +46,8 @@ public class Issue1994 extends TestCase {
         }
 
     }
-    public void testconvertion_short_max() {
-        JsonObject jsonObject = new JsonObject();
+    public void testConvertionShortMax() {
+        final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("max_short", Short.MAX_VALUE+18);
 
         try {
@@ -58,8 +58,8 @@ public class Issue1994 extends TestCase {
 
     }
 
-    public void testconvertion_short_min() {
-        JsonObject jsonObject = new JsonObject();
+    public void testConvertionShortMin() {
+        final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("min_short", Short.MIN_VALUE-18);
 
         try {
@@ -70,8 +70,8 @@ public class Issue1994 extends TestCase {
 
     }
 
-    public void testconvertion_byte_max() {
-        JsonObject jsonObject = new JsonObject();
+    public void testConvertionByteMax() {
+        final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("max_byte", Byte.MAX_VALUE+18);
 
         try {
@@ -82,8 +82,8 @@ public class Issue1994 extends TestCase {
 
     }
 
-    public void testconvertion_byte_min() {
-        JsonObject jsonObject = new JsonObject();
+    public void testConvertionByteMin() {
+        final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("min_byte", Byte.MIN_VALUE-18);
 
         try {
@@ -93,8 +93,8 @@ public class Issue1994 extends TestCase {
         }
 
     }
-    public void testconvertion_long_max() {
-        JsonObject jsonObject = new JsonObject();
+    public void testconvertionLongMax() {
+        final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("max_long", BigInteger.valueOf(Long.MAX_VALUE).add(BigInteger.valueOf(100L)));
 
         try {
@@ -105,8 +105,8 @@ public class Issue1994 extends TestCase {
 
     }
 
-    public void testconvertion_long_min() {
-        JsonObject jsonObject = new JsonObject();
+    public void testconvertionLongMin() {
+        final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("min_long", BigInteger.valueOf(Long.MIN_VALUE).subtract(BigInteger.valueOf(100L)));
 
         try {
