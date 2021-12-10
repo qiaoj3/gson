@@ -203,19 +203,15 @@ public final class JsonPrimitive extends JsonElement {
    */
   @Override
   public long getAsLong() {
-    if (!isNumber()) {
-      return  Long.parseLong(getAsString());
+    if (isNumber()) {
+      if (getAsBigInteger().compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0) {
+        throw new NumberFormatException(" TOO LARGE: Long");
+      }
+      if (getAsBigInteger().compareTo(BigInteger.valueOf(Long.MIN_VALUE)) < 0) {
+        throw new NumberFormatException(" TOO SMALL: Long");
+      }
     }
-
-    BigInteger num = getAsBigInteger();
-
-    if (num.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0) {
-      throw new NumberFormatException(" TOO LARGE: Long");
-    }
-    if (num.compareTo(BigInteger.valueOf(Long.MIN_VALUE)) < 0) {
-      throw new NumberFormatException(" TOO SMALL: Long");
-    }
-    return getAsNumber().longValue();
+    return isNumber() ? getAsNumber().longValue() : Long.parseLong(getAsString());
   }
 
   /**
@@ -226,19 +222,15 @@ public final class JsonPrimitive extends JsonElement {
    */
   @Override
   public short getAsShort() {
-    if (!isNumber()) {
-      return  Short.parseShort(getAsString());
+    if (isNumber()) {
+      if (getAsBigInteger().compareTo(BigInteger.valueOf(Short.MAX_VALUE)) > 0) {
+        throw new NumberFormatException(" TOO LARGE: Short");
+      }
+      if (getAsBigInteger().compareTo(BigInteger.valueOf(Short.MIN_VALUE)) < 0) {
+        throw new NumberFormatException(" TOO SMALL: Short");
+      }
     }
-
-    BigInteger num = getAsBigInteger();
-
-    if (num.compareTo(BigInteger.valueOf(Short.MAX_VALUE)) > 0) {
-      throw new NumberFormatException(" TOO LARGE: Short");
-    }
-    if (num.compareTo(BigInteger.valueOf(Short.MIN_VALUE)) < 0) {
-      throw new NumberFormatException(" TOO SMALL: Short");
-    }
-    return getAsNumber().shortValue();
+    return isNumber() ? getAsNumber().shortValue() : Short.parseShort(getAsString());
   }
 
  /**
@@ -249,36 +241,36 @@ public final class JsonPrimitive extends JsonElement {
   */
   @Override
   public int getAsInt() {
-    if (!isNumber()) {
-      return  Integer.parseInt(getAsString());
-    }
 
-    BigInteger num = getAsBigInteger();
+    if (isNumber()) {
 
-    if (num.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
+
+      if (getAsBigInteger().compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
         throw new NumberFormatException(" TOO LARGE: INT");
+      }
+      if (getAsBigInteger().compareTo(BigInteger.valueOf(Integer.MIN_VALUE)) < 0) {
+        throw new NumberFormatException(" TOO SMALL: INT");
+      }
+
     }
-    if (num.compareTo(BigInteger.valueOf(Integer.MIN_VALUE)) < 0) {
-      throw new NumberFormatException(" TOO SMALL: INT");
-    }
-    return getAsNumber().intValue();
+    return isNumber() ? getAsNumber().intValue() : Integer.parseInt(getAsString());
   }
 
   @Override
   public byte getAsByte() {
-    if (!isNumber()) {
-      return  Byte.parseByte(getAsString());
-    }
 
-    BigInteger num = getAsBigInteger();
+    if ( isNumber()) {
 
-    if (num.compareTo(BigInteger.valueOf(Byte.MAX_VALUE)) > 0) {
-      throw new NumberFormatException(" TOO LARGE: Byte");
+
+      if (getAsBigInteger().compareTo(BigInteger.valueOf(Byte.MAX_VALUE)) > 0) {
+        throw new NumberFormatException(" TOO LARGE: Byte");
+      }
+      if (getAsBigInteger().compareTo(BigInteger.valueOf(Byte.MIN_VALUE)) < 0) {
+        throw new NumberFormatException(" TOO SMALL: Byte");
+      }
+
     }
-    if (num.compareTo(BigInteger.valueOf(Byte.MIN_VALUE)) < 0) {
-      throw new NumberFormatException(" TOO SMALL: Byte");
-    }
-    return getAsNumber().byteValue();
+    return isNumber() ? getAsNumber().byteValue() : Byte.parseByte(getAsString());
   }
 
   @Override
@@ -341,4 +333,3 @@ public final class JsonPrimitive extends JsonElement {
     return false;
   }
 }
-
